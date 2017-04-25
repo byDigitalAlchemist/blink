@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+  <appender name="BlinkConsoleAppender" class="ch.qos.logback.core.ConsoleAppender">
+    <encoder>
+      <pattern>[%c{1}:%L] - %m%n</pattern>
+    </encoder>
+  </appender>
+  <appender name="BlinkAppender" class="ch.qos.logback.core.rolling.RollingFileAppender">
+    <!-- Tests run on modern PCs show that buffering related property -->
+    <!-- "ImmediateFlush" has negligible impact and will be ignored.  -->
+    <!--See also http://logback.qos.ch/manual/appenders.html#RollingFileAppender-->
+    <File>D:/LOGS/SPARKGRIDFS/sparkgrid.log</File>
+    <encoder>
+      <pattern>%d{ISO8601} [%t] %p [%c{1}:%L] # %m%n</pattern>
+    </encoder>
+    <rollingPolicy class="ch.qos.logback.core.rolling.FixedWindowRollingPolicy">
+      <maxIndex>10</maxIndex>
+      <FileNamePattern>D:/LOGS/SPARKGRIDFS/sparkgrid.log.%i</FileNamePattern>
+    </rollingPolicy>
+    <triggeringPolicy class="ch.qos.logback.core.rolling.SizeBasedTriggeringPolicy">
+      <MaxFileSize>25MB</MaxFileSize>
+    </triggeringPolicy>
+  </appender>
+  <root level="INFO">
+    <appender-ref ref="BlinkConsoleAppender"/>
+    <appender-ref ref="BlinkAppender"/>
+  </root>
+</configuration>
