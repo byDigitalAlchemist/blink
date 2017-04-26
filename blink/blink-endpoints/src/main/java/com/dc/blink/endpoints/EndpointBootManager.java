@@ -79,8 +79,4 @@ public class EndpointBootManager {
         
     }
     
-    // declare this in a util-class
-    public static String render(Map<String, Object> model, String templatePath) {
-        return new VelocityTemplateEngine().render(new ModelAndView(model, templatePath));
-    }
 }
